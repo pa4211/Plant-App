@@ -44,7 +44,7 @@ def get_plant_info(image_base64: str):
                 suggestion = plant_info["suggestions"][0]
                 name = suggestion.get("plant_name", "Unknown plant")
                 #common_names = suggestion.get("plant_details", {}).get("common_names", [])
-                common_names = ", ".join(suggestion.get("plant_details", {}).get("common_names", []))
+                common_names = suggestion.get("plant_details", {}).get("common_names", [])
                 description = suggestion.get("plant_details", {}).get("wiki_description", {}).get("value", "No description available")
                 synonyms = suggestion.get("plant_details", {}).get("synonyms", [])
                 #synonyms = suggestion.get("plant_details", {}).get("synonyms", [])
