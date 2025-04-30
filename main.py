@@ -44,7 +44,7 @@ def get_plant_info(image_base64: str):
                 suggestion = plant_info["suggestions"][0]
                 name = suggestion.get("plant_name", "Unknown plant")
                 #common_names = suggestion.get("plant_details", {}).get("common_names", [])
-                common_names = suggestion.get("plant_details", {}).get("common_names", [])
+                common_names = ", ".join(suggestion.get("plant_details", {}).get("common_names", []))
                 description = suggestion.get("plant_details", {}).get("wiki_description", {}).get("value", "No description available")
                 synonyms = suggestion.get("plant_details", {}).get("synonyms", [])
                 #synonyms = suggestion.get("plant_details", {}).get("synonyms", [])
@@ -89,7 +89,7 @@ def get_plant_info(image_base64: str):
         return None
 
 # Streamlit app layout
-st.title("Plant Identifier App")
+st.title("PlantLens")
 
 # Upload image
 uploaded_image = st.file_uploader("Upload a photo of a plant", type=["jpg", "jpeg", "png"])
@@ -98,7 +98,7 @@ if uploaded_image:
     st.image(uploaded_image, caption="Uploaded Image", use_container_width=True)
     
     # When Search button is clicked
-    if st.button("Search Plant"):
+    if st.button("Know More"):
         try:
             image = Image.open(uploaded_image)
             image_base64 = image_to_base64(image)
